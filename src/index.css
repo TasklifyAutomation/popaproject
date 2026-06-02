@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0B0B0B] text-white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' /%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .cursor-glow {
+    cursor: none;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-[#F9EE6B] to-[#FFD700] bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply bg-[#F9EE6B] text-[#0B0B0B] font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(249,238,107,0.5)] active:scale-[0.97];
+  }
+
+  .btn-secondary {
+    @apply border-2 border-white text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:border-[#F9EE6B] hover:text-[#F9EE6B] hover:scale-105 active:scale-[0.97];
+  }
+
+  .section-padding {
+    @apply py-20 md:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-[1200px] mx-auto px-6;
+  }
+}
+
+.spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #F9EE6B, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkFloat linear infinite;
+  opacity: 0;
+}
+
+@keyframes sparkFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(1.5);
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #F9EE6B, #FFD700);
+  transform-origin: 0%;
+  z-index: 100;
+}
+
+.vertical-rl {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
